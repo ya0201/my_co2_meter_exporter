@@ -1,12 +1,12 @@
 mod config;
-mod fetch;
 mod handler;
 mod metrics;
+mod switchbot;
 
 use crate::config::Config;
-use crate::fetch::fetch_external_api;
 use crate::handler::metrics_route;
 use crate::metrics::Metrics;
+use crate::switchbot::fetch::fetch_external_api;
 
 // [`tracing`] is a framework for instrumenting Rust programs to
 // collect scoped, structured, and async-aware diagnostics. This example
