@@ -18,7 +18,18 @@ pub async fn fetch_external_api(metrics: Metrics) {
         //     }
         // }
 
-        metrics.api_value.set(1.3);
+        metrics
+            .temperature
+            .with_label_values(&["hogeId", "fugaType", "mogeHubId"])
+            .set(1.3);
+        metrics
+            .humidity
+            .with_label_values(&["hogeId", "fugaType", "mogeHubId"])
+            .set(40);
+        metrics
+            .co2
+            .with_label_values(&["hogeId", "fugaType", "mogeHubId"])
+            .set(1000);
 
         sleep(Duration::from_secs(300)).await;
     }
