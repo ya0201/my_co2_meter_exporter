@@ -1,10 +1,14 @@
-use crate::metrics::Metrics;
+use crate::{config::Config, metrics::Metrics};
 use reqwest::Client;
 use std::time::Duration;
 use tokio::time::sleep;
 
-pub async fn fetch_external_api(metrics: Metrics) {
+pub async fn fetch_external_api(metrics: Metrics, config: Config) {
     // let client = Client::new();
+    // println!(
+    //     "api token: {}, api secret: {}, device id: {}",
+    //     config.api_token, config.api_secret, config.co2_meter_device_id
+    // );
 
     loop {
         // match client.get("https://example.com/api").send().await {

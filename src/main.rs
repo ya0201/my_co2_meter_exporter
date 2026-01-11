@@ -1,7 +1,9 @@
+mod config;
 mod fetch;
 mod handler;
 mod metrics;
 
+use crate::config::Config;
 use crate::fetch::fetch_external_api;
 use crate::handler::metrics_route;
 use crate::metrics::Metrics;
@@ -36,9 +38,10 @@ async fn main() {
         .init();
 
     let metrics = Metrics::new();
+    let config = Config::new();
 
     // バックグラウンド起動
-    tokio::spawn(fetch_external_api(metrics.clone()));
+    tokio::spawn(fetch_external_api(metrics.clone(), config.clone()));
 
     let routes = metrics_route(metrics).with(warp::trace::request());
 
