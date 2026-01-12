@@ -1,10 +1,12 @@
-mod fetch;
+mod config;
 mod handler;
 mod metrics;
+mod switchbot;
 
-use crate::fetch::fetch_external_api;
+use crate::config::Config;
 use crate::handler::metrics_route;
 use crate::metrics::Metrics;
+use crate::switchbot::fetch::run_switchbot_fetcher;
 
 // [`tracing`] is a framework for instrumenting Rust programs to
 // collect scoped, structured, and async-aware diagnostics. This example
@@ -36,9 +38,10 @@ async fn main() {
         .init();
 
     let metrics = Metrics::new();
+    let config = Config::new();
 
     // バックグラウンド起動
-    tokio::spawn(fetch_external_api(metrics.clone()));
+    tokio::spawn(run_switchbot_fetcher(metrics.clone(), config.clone()));
 
     let routes = metrics_route(metrics).with(warp::trace::request());
 

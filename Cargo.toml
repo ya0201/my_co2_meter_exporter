@@ -6,6 +6,13 @@ edition = "2024"
 [dependencies]
 warp = "0.3"
 tokio = { version = "1", features = ["full"] }
+tracing = { version = "0.1.21", default-features = false, features = ["log", "std"] }
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 prometheus = "0.13"
 reqwest = { version = "0.11", features = ["json"] }
+hmac = "0.12"
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+rand = "0.8"
+base64 = "0.22"
+anyhow = "1.0.100"
