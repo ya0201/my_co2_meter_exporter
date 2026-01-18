@@ -45,5 +45,5 @@ async fn main() {
 
     let routes = metrics_route(metrics).with(warp::trace::request());
 
-    warp::serve(routes).run(([0, 0, 0, 0], 9090)).await;
+    warp::serve(routes).run(([0, 0, 0, 0], config.port)).await;
 }
